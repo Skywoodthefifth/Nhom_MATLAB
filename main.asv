@@ -1,0 +1,56 @@
+close all;
+clear;
+
+folderName = ['10MSD','11MVD','12FTD','14FHH','15MMH','16FTH','17MTH','18MNK'];
+
+
+ 
+  
+for i=1:8
+    figure;
+    
+    tenthumuc=folderName((i-1)*5+1:5*i);
+    audioName = ['THHL\' tenthumuc '\'  'u.wav'];
+    
+    [y, Fs] = audioread(audioName); % doc du lieu tu file .wav
+    y = y / max(abs(y)); % chuan hoa bien do ve [0;1]
+    
+    index_frame = DrawGraph(audioName);
+    
+    t = [0 : 1 / Fs : length(y) / Fs];
+    t = t(1 : end - 1);
+    
+    plot(t,y);
+    title(audioName);
+    
+    
+            y = [-1  1];
+            %ve cac duong bien khi su dung thuat toan
+            
+            N_start=index_frame(1)*ones(size(y));
+            N_end=index_frame(length(index_frame))*ones(size(y));
+            
+            hold on
+               plot(N_start, ylim, '-r')                               
+              hold off
+              
+              hold on
+               plot(N_end, ylim, '-r')                               
+              hold off
+              
+              khoangchia=(N_end-N_start)/3;
+              
+              hold on
+               plot((N_start+khoangchia), ylim, '-r')                               
+              hold off
+              hold on
+               plot((N_start+2*khoangchia), ylim, '-r')                               
+              hold off
+                
+            
+        
+    
+end
+
+
+
