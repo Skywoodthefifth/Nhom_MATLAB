@@ -48,9 +48,26 @@ for i=1:8
                 
             
         figure;
-        frame = y( Fs * (N_start+khoangchia) : Fs * (N_start+2*khoangchia) );
-        plot(frame);
-    
+        khung_frame = y( Fs * (N_start+khoangchia) : Fs * (N_start+2*khoangchia) );
+        plot(khung_frame);
+        
+        f_d = 0.020; % do dai cua moi frame la 25ms
+        n = f_d * Fs;  % so luong mau trong moi frame
+        
+        frames = DivFrame(khung_frame, n);
+        
+        N_FFT = 512; %1024 , 2048;
+        
+        frame_fft = zeros(1, N_FFT);
+        
+        for j = 1: (length(frames)/n)
+            temp_frame = frames(j, : );
+            
+            frame_fft = frame_fft + fft(temp_frame, N_FFT);
+        end
+        
+        frame_fft = frame_fft./length(frames);
+        
 end
 
 
