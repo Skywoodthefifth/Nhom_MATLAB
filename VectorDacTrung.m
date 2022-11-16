@@ -1,4 +1,4 @@
-function [ vec_dactrung_a ] = VectorDacTrung( folderName, fileName )
+function [ vec_dactrung ] = VectorDacTrung( folderName, fileName, fileLength )
 %VECTORDACTRUNG Summary of this function goes here
 %   Detailed explanation goes here
 N_FFT = 512; %1024 , 2048;            
@@ -6,16 +6,16 @@ sum = zeros(1,N_FFT);
  
       
   
-for i=1:21
+for i=1:fileLength
     %figure;
     
-    tenthumuc=folderName((i-1)*5+1:5*i);
-    audioName = ['THHL\' tenthumuc '\'  fileName];
+    individual_folderName=folderName((i-1)*5+1:5*i);
+    audioName = ['THHL\' individual_folderName '\'  fileName];
     
     [y, Fs] = audioread(audioName); % doc du lieu tu file .wav
     y = y / max(abs(y)); % chuan hoa bien do ve [0;1]
     
-    index_frame = DrawGraph(audioName);
+    frame_indexes = DrawGraph(audioName);
     
     t = [0 : 1 / Fs : length(y) / Fs];
     t = t(1 : end - 1);
@@ -26,8 +26,8 @@ for i=1:21
     
             
             
-            N_start=index_frame(1);
-            N_end=index_frame(length(index_frame));
+            N_start=frame_indexes(1);
+            N_end=frame_indexes(length(frame_indexes));
             
 %             hold on
 %                plot([1 1]*N_start, ylim, '-r')                               
@@ -48,26 +48,29 @@ for i=1:21
                 
             
 %         figure;
-        khung_frame = y( Fs * (N_start+khoangchia) : Fs * (N_start+2*khoangchia) );
+        khung_chia_start = round(Fs * (N_start+khoangchia));
+        khung_chia_end = round(Fs * (N_start+2*khoangchia));
+
+        khung_chia = y( khung_chia_start : khung_chia_end );
 %         plot(khung_frame);
         
         f_d = 0.020; % do dai cua moi frame la 25ms
         n = f_d * Fs;  % so luong mau trong moi frame
         
-        frames = DivFrame(khung_frame, n);
+        frames = DivFrame(khung_chia, n);
         
        
         
-        frame_fft = zeros(1, N_FFT);
+        individual_frame_fft = zeros(1, N_FFT);
         
         for j = 1: size(frames,1)
             temp_frame = frames(j, : );
             
-            frame_fft = frame_fft + fft(temp_frame, N_FFT);
+            individual_frame_fft = individual_frame_fft + fft(temp_frame, N_FFT);
         end
         
         %vector dac trung 
-        frame_fft = frame_fft./size(frames,1);
+        frame_fft = individual_frame_fft./size(frames,1);
             
         sum  = sum + frame_fft;
         
@@ -76,7 +79,7 @@ for i=1:21
 end
 
 
-vec_dactrung_a = sum ./ 21;
+vec_dactrung = sum ./ fileLength;
 
 end
 
