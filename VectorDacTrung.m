@@ -79,7 +79,7 @@ for i=1:fileFolderLength
 end
 
 
-vec_dactrung = sum ./ fileFolderLength;
+vec_dactrung = sum./fileFolderLength;
 
 end
 
