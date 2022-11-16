@@ -18,6 +18,52 @@ vector_dactrung_o_THHL = VectorDacTrung(folderName_THHL, 'o.wav', fileFolderLeng
 [check_e_a, check_e_u, check_e_i, check_e_e, check_e_o] = SoSanhVectorDacTrung( folderName_THKT, 'e.wav', fileFolderLength, vector_dactrung_a_THHL, vector_dactrung_u_THHL, vector_dactrung_i_THHL, vector_dactrung_e_THHL, vector_dactrung_o_THHL);
 [check_o_a, check_o_u, check_o_i, check_o_e, check_o_o] = SoSanhVectorDacTrung( folderName_THKT, 'o.wav', fileFolderLength, vector_dactrung_a_THHL, vector_dactrung_u_THHL, vector_dactrung_i_THHL, vector_dactrung_e_THHL, vector_dactrung_o_THHL);
 
+check = zeros(5,5);
+
+check(1,1) = check_a_a;
+check(1,2) = check_a_u;
+check(1,3) = check_a_i;
+check(1,4) = check_a_e;
+check(1,5) = check_a_o;
+
+check(2,1) = check_u_a;
+check(2,2) = check_u_u;
+check(2,3) = check_u_i;
+check(2,4) = check_u_e;
+check(2,5) = check_u_o;
+
+check(3,1) = check_i_a;
+check(3,2) = check_i_u;
+check(3,3) = check_i_i;
+check(3,4) = check_i_e;
+check(3,5) = check_i_o;
+
+check(4,1) = check_e_a;
+check(4,2) = check_e_u;
+check(4,3) = check_e_i;
+check(4,4) = check_e_e;
+check(4,5) = check_e_o;
+
+check(5,1) = check_o_a;
+check(5,2) = check_o_u;
+check(5,3) = check_o_i;
+check(5,4) = check_o_e;
+check(5,5) = check_o_o;
 
 
+% f = figure;
+% f.Position(3:4) = [400 300];
+% uit = uitable(f, 'Data', check,  'Position',[0 0 400 300]);
+% uit.RowName = {'a','u','i','e','o'};
+% uit.ColumnName = {'a','u','i','e','o'};
 
+h = figure;
+data = check;
+u = uitable('Position',[20 20 500 70],'data',data);
+u.RowName = {'a','u','i','e','o'};
+u.ColumnName = {'a','u','i','e','o'};
+table_extent = get(u,'Extent');
+set(u,'Position',[1 1 table_extent(3) table_extent(4)])
+figure_size = get(h,'outerposition');
+desired_fig_size = [figure_size(1) figure_size(2) table_extent(3)+15 table_extent(4)+65+20];
+set(h,'outerposition', desired_fig_size);
