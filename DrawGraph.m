@@ -4,7 +4,7 @@ function [ index_frame ] = DrawGraph(fileNameWAV)
     [y, Fs] = audioread(fileNameWAV); % doc du lieu tu file .wav
     y = y / max(abs(y)); % chuan hoa bien do ve [0;1]
 
-    f_d = 0.025; % do dai cua moi frame la 25ms
+    f_d = 0.02; % do dai cua moi frame la 25ms
     n = f_d * Fs;  % so luong mau trong moi frame
     
     T = 0.005; % dat nguong T
