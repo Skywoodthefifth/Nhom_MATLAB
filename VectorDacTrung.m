@@ -1,4 +1,4 @@
-function [ vec_dactrung ] = VectorDacTrung( folderName, fileName, fileLength )
+function [ vec_dactrung ] = VectorDacTrung( folderName, fileName, fileFolderLength )
 %VECTORDACTRUNG Summary of this function goes here
 %   Detailed explanation goes here
 N_FFT = 512; %1024 , 2048;            
@@ -6,7 +6,7 @@ sum = zeros(1,N_FFT);
  
       
   
-for i=1:fileLength
+for i=1:fileFolderLength
     %figure;
     
     individual_folderName=folderName((i-1)*5+1:5*i);
@@ -79,7 +79,7 @@ for i=1:fileLength
 end
 
 
-vec_dactrung = sum ./ fileLength;
+vec_dactrung = sum ./ fileFolderLength;
 
 end
 
