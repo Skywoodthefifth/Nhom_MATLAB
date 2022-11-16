@@ -1,7 +1,7 @@
 function [ vec_dactrung ] = VectorDacTrung( folderName, fileName, fileFolderLength )
 %VECTORDACTRUNG Summary of this function goes here
 %   Detailed explanation goes here
-N_FFT = 512; %1024 , 2048;            
+N_FFT = 1024; %512 , 1024, 2048;            
 sum = zeros(1,N_FFT);
  
       
@@ -17,8 +17,8 @@ for i=1:fileFolderLength
     
     frame_indexes = DrawGraph(audioName);
     
-    t = [0 : 1 / Fs : length(y) / Fs];
-    t = t(1 : end - 1);
+%     t = [0 : 1 / Fs : length(y) / Fs];
+%     t = t(1 : end - 1);
     
     %plot(t,y);
     %title(audioName);
@@ -54,7 +54,7 @@ for i=1:fileFolderLength
         khung_chia = y( khung_chia_start : khung_chia_end );
 %         plot(khung_frame);
         
-        f_d = 0.020; % do dai cua moi frame la 25ms
+        f_d = 0.020; % do dai cua moi frame 
         n = f_d * Fs;  % so luong mau trong moi frame
         
         frames = DivFrame(khung_chia, n);
