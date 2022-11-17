@@ -14,7 +14,8 @@ vector_dactrung_i_THHL = VectorDacTrung(folderName_THHL, 'i.wav', fileFolderLeng
 vector_dactrung_e_THHL = VectorDacTrung(folderName_THHL, 'e.wav', fileFolderLength);
 vector_dactrung_o_THHL = VectorDacTrung(folderName_THHL, 'o.wav', fileFolderLength);
 
-%Nhan dang nguyen am dua tren vector dac trung da huan luyen
+
+
 [check_a_a, check_a_u, check_a_i, check_a_e, check_a_o] = SoSanhVectorDacTrung( folderName_THKT, 'a.wav', fileFolderLength, vector_dactrung_a_THHL, vector_dactrung_u_THHL, vector_dactrung_i_THHL, vector_dactrung_e_THHL, vector_dactrung_o_THHL);
 [check_u_a, check_u_u, check_u_i, check_u_e, check_u_o] = SoSanhVectorDacTrung( folderName_THKT, 'u.wav', fileFolderLength, vector_dactrung_a_THHL, vector_dactrung_u_THHL, vector_dactrung_i_THHL, vector_dactrung_e_THHL, vector_dactrung_o_THHL);
 [check_i_a, check_i_u, check_i_i, check_i_e, check_i_o] = SoSanhVectorDacTrung( folderName_THKT, 'i.wav', fileFolderLength, vector_dactrung_a_THHL, vector_dactrung_u_THHL, vector_dactrung_i_THHL, vector_dactrung_e_THHL, vector_dactrung_o_THHL);

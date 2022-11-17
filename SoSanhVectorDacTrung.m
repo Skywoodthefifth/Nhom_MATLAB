@@ -15,7 +15,6 @@ check_o =0;
 
 
 for i=1:fileFolderLength
-
     
     tenthumuc=folderName_THKT((i-1)*5+1:5*i);
     audioName = ['THKT\' tenthumuc '\'  fileName];
@@ -42,6 +41,7 @@ for i=1:fileFolderLength
 
     %tach khung chia tren thanh cac frame
     frames = DivFrame(khung_frame, n);
+
 
     frame_fft = zeros(1, N_FFT); 
 

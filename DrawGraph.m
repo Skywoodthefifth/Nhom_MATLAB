@@ -17,6 +17,12 @@ function [ index_frame ] = DrawGraph(fileNameWAV)
 %         disp(index_frame);
 %         [ste, ste_wave] = STE(frames, n);
 %         [t, t_ste] = Time(y, Fs, ste_wave); % ham thoi gian t, ste theo chu ki lay mau 1/Fs
+%         
+%         subplot(3,1,1); plot(t,y); title('Input'); ylabel('Bien do'); xlabel('Thoi gian(s)'); legend('Input signal');
+%         
+%         subplot(3,1,2); plot(t,y); hold on; ylabel('Bien do'); xlabel('Thoi gian(s)'); title('Output speech/silences using standard segment');
+%         
+%         subplot(3,1,3); 
 %             plot(t,y); hold on;
 %             %do thi nang luong ngan han STE
 %             plot(t_ste,ste_wave,'r','LineWidth',1.5); hold on;

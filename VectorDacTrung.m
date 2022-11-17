@@ -29,15 +29,15 @@ for i=1:fileFolderLength
     khung_chia_start = round(Fs * (N_start+khoangchia));
     khung_chia_end = round(Fs * (N_start+2*khoangchia));
 
-    khung_chia = y( khung_chia_start : khung_chia_end );
-       
-    f_d = 0.025; % do dai cua moi frame phan tich vector dac trung
-    n = f_d * Fs;  % so luong mau trong moi frame
+        khung_chia = y( khung_chia_start : khung_chia_end );
+%          plot(khung_chia);
         
-    %tach khung chia tren thanh cac frame
-    frames = DivFrame(khung_chia, n);
- 
-    individual_frame_fft = zeros(1, N_FFT);
+        f_d = 0.025; % do dai cua moi frame 
+        n = f_d * Fs;  % so luong mau trong moi frame
+        
+        frames = DivFrame(khung_chia, n);
+        
+        individual_frame_fft = zeros(1, N_FFT);
         
     for j = 1: size(frames,1)
         temp_frame = frames(j, : );
@@ -48,9 +48,12 @@ for i=1:fileFolderLength
         %vector dac trung 
         frame_fft = individual_frame_fft./size(frames,1);
 
-        sum  = sum + frame_fft;       
+        sum  = sum + frame_fft;
+        
+        
+        
 end
-%trung bing cong cac vector dac trung cua 1 nguyen am
+
 vec_dactrung = sum./fileFolderLength;
 end
 
