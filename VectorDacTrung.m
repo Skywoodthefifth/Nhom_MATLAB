@@ -54,7 +54,7 @@ for i=1:fileFolderLength
         khung_chia = y( khung_chia_start : khung_chia_end );
 %         plot(khung_frame);
         
-        f_d = 0.020; % do dai cua moi frame 
+        f_d = 0.025; % do dai cua moi frame 
         n = f_d * Fs;  % so luong mau trong moi frame
         
         frames = DivFrame(khung_chia, n);
@@ -66,7 +66,14 @@ for i=1:fileFolderLength
         for j = 1: size(frames,1)
             temp_frame = frames(j, : );
             
-            individual_frame_fft = individual_frame_fft + fft(temp_frame, N_FFT);
+            individual_frame_fft_temp = fft(temp_frame, N_FFT);
+            
+            individual_frame_fft_temp = fftshift(individual_frame_fft_temp);
+            individual_frame_fft_temp= abs(individual_frame_fft_temp).^2/length(individual_frame_fft_temp);
+            
+            individual_frame_fft = individual_frame_fft + individual_frame_fft_temp;
+            
+            
         end
         
         %vector dac trung 
@@ -80,6 +87,9 @@ end
 
 
 vec_dactrung = sum./fileFolderLength;
+
+figure;
+plot(vec_dactrung);
 
 end
 
