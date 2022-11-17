@@ -1,5 +1,5 @@
 function [ index_frame ] = DrawGraph(fileNameWAV)
-%     figure('Name', fileName);
+
     
     [y, Fs] = audioread(fileNameWAV); % doc du lieu tu file .wav
     y = y / max(abs(y)); % chuan hoa bien do ve [0;1]
@@ -9,10 +9,13 @@ function [ index_frame ] = DrawGraph(fileNameWAV)
     
     T = 0.003; % dat nguong T
     
-        frames = DivFrame(y, n); % chia tin hieu dau vao thanh cac frame
-        [ste, ~] = STE(frames, n); % tim nang luong ngan han ste cua moi frame
-        index_frame = SpeechSilences(ste, T, f_d); % vi tri cac frame speech/silences
+    frames = DivFrame(y, n); % chia tin hieu dau vao thanh cac frame
+    [ste, ~] = STE(frames, n); % tim nang luong ngan han ste cua moi frame
+    index_frame = SpeechSilences(ste, T, f_d); % vi tri cac frame speech/silences
+        
+%         figure('Name', fileName);
 %         disp(index_frame);
+%         [ste, ste_wave] = STE(frames, n);
 %         [t, t_ste] = Time(y, Fs, ste_wave); % ham thoi gian t, ste theo chu ki lay mau 1/Fs
 %         
 %         subplot(3,1,1); plot(t,y); title('Input'); ylabel('Bien do'); xlabel('Thoi gian(s)'); legend('Input signal');

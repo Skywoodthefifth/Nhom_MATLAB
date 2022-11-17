@@ -3,42 +3,16 @@ clear;
 
 folderName_THHL = ['01MDA', '02FVA', '03MAB', '04MHB', '05MVB', '06FTB', '07FTC', '08MLD', '09MPD', '10MSD','11MVD','12FTD','14FHH', '15MMH','16FTH','17MTH','18MNK', '19MXK', '20MVK', '21MTL', '22MHL'];
 folderName_THKT = ['23MTL', '24FTL', '25MLM', '27MCM', '28MVN', '29MHN', '30FTN', '32MTP', '33MHP', '34MQP','35MMQ','36MAQ','37MDS', '38MDS','39MTS','40MHS','41MVS', '42FQT', '43MNT', '44MTT', '45MDV'];
-% folderName_THHL = ['23MTL', '24FTL', '25MLM', '27MCM', '28MVN', '29MHN', '30FTN', '32MTP', '33MHP', '34MQP','35MMQ','36MAQ','37MDS', '38MDS','39MTS','40MHS','41MVS', '42FQT', '43MNT', '44MTT', '45MDV'];
 
+%So folder trong THHL va THKT
 fileFolderLength = 21;
             
+%Huan luyen vector dac trung
 vector_dactrung_a_THHL = VectorDacTrung(folderName_THHL, 'a.wav', fileFolderLength);
 vector_dactrung_u_THHL = VectorDacTrung(folderName_THHL, 'u.wav', fileFolderLength);
 vector_dactrung_i_THHL = VectorDacTrung(folderName_THHL, 'i.wav', fileFolderLength);
 vector_dactrung_e_THHL = VectorDacTrung(folderName_THHL, 'e.wav', fileFolderLength);
 vector_dactrung_o_THHL = VectorDacTrung(folderName_THHL, 'o.wav', fileFolderLength);
-
-
-
-% for i = 1 : length(vector_dactrung_a_THHL)/2
-%     k1(1:i) = vector_dactrung_a_THHL(1:i);
-% end
-% for i = 1 : length(vector_dactrung_u_THHL)/2
-%     k2(1:i) = vector_dactrung_u_THHL(1:i);
-% end
-% for i = 1 : length(vector_dactrung_i_THHL)/2
-%     k3(1:i) = vector_dactrung_i_THHL(1:i);
-% end
-% for i = 1 : length(vector_dactrung_e_THHL)/2
-%     k4(1:i) = vector_dactrung_e_THHL(1:i);
-% end
-% for i = 1 : length(vector_dactrung_o_THHL)/2
-%     k5(1:i) = vector_dactrung_o_THHL(1:i);
-% end
-% x = 1:5;
-% figure
-% plot(k1);
-% title("Vecto dac trung");
-% hold on;
-% plot(k2);
-% plot(k3);
-% plot(k4);
-% plot(k5);
 
 
 
@@ -48,6 +22,7 @@ vector_dactrung_o_THHL = VectorDacTrung(folderName_THHL, 'o.wav', fileFolderLeng
 [check_e_a, check_e_u, check_e_i, check_e_e, check_e_o] = SoSanhVectorDacTrung( folderName_THKT, 'e.wav', fileFolderLength, vector_dactrung_a_THHL, vector_dactrung_u_THHL, vector_dactrung_i_THHL, vector_dactrung_e_THHL, vector_dactrung_o_THHL);
 [check_o_a, check_o_u, check_o_i, check_o_e, check_o_o] = SoSanhVectorDacTrung( folderName_THKT, 'o.wav', fileFolderLength, vector_dactrung_a_THHL, vector_dactrung_u_THHL, vector_dactrung_i_THHL, vector_dactrung_e_THHL, vector_dactrung_o_THHL);
 
+%<--- khoi tao bang thong ke
 check = zeros(5,5);
 
 check(1,1) = check_a_a;
@@ -80,13 +55,6 @@ check(5,3) = check_o_i;
 check(5,4) = check_o_e;
 check(5,5) = check_o_o;
 
-
-% f = figure;
-% f.Position(3:4) = [400 300];
-% uit = uitable(f, 'Data', check,  'Position',[0 0 400 300]);
-% uit.RowName = {'a','u','i','e','o'};
-% uit.ColumnName = {'a','u','i','e','o'};
-
 h = figure;
 data = check;
 u = uitable('Position',[20 20 500 70],'data',data);
@@ -98,15 +66,12 @@ figure_size = get(h,'outerposition');
 desired_fig_size = [figure_size(1) figure_size(2) table_extent(3)+15 table_extent(4)+65+20];
 set(h,'outerposition', desired_fig_size);
 
-
-%Thong ke do chinh xac
 check2 = zeros(5,5);
-
-check2(1,1) = (check_a_a*100)/21;
-check2(1,2) = (check_a_u*100)/21;
-check2(1,3) = (check_a_i*100)/21;
-check2(1,4) = (check_a_e*100)/21;
-check2(1,5) = (check_a_o*100)/21;
+check2(1,1) = check_a_a*100/21;
+check2(1,2) = check_a_u*100/21;
+check2(1,3) = check_a_i*100/21;
+check2(1,4) = check_a_e*100/21;
+check2(1,5) = check_a_o*100/21;
 
 check2(2,1) = check_u_a*100/21;
 check2(2,2) = check_u_u*100/21;
@@ -132,15 +97,13 @@ check2(5,3) = check_o_i*100/21;
 check2(5,4) = check_o_e*100/21;
 check2(5,5) = check_o_o*100/21;
 
-DoChinhXacTong = (check_a_a + check_u_u + check_i_i + check_e_e + check_o_o)*100/105;
+Tong = (check_a_a+ check_u_u + check_i_i + check_e_e + check_o_o)*100/105;
 dau = '%';
-X = sprintf('Do chinh xac tong: %f%s',DoChinhXacTong,dau);
-disp(X)
-
-Details = check2;
-T = array2table(Details,...
+s = sprintf('Do chinh xac la: %f%s', Tong,dau);
+disp(s);
+T = array2table(check2,...
     'VariableNames',{'a','u','i','e','o'},...
      'RowNames',{'a','u','i','e','o'}); 
-T = table(T,'VariableNames',{'Bang thong ke (Don vi %)'}); 
-disp(T)
-
+T = table(T,'VariableNames',{'Bang thong ke (don vi %)'});
+disp(T) 
+%--->

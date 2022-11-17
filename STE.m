@@ -1,5 +1,5 @@
 function [ste, ste_wave] = STE(frames, n) % tim nang luong ngan han STE cua moi frame
-    [r,c] = size(frames);
+    [r,~] = size(frames);
 
     ste = 0;
     for i = 1 : r 
