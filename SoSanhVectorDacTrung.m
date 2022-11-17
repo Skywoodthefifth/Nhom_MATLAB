@@ -37,7 +37,7 @@ for i=1:fileFolderLength
     khung_frame = y( khung_frame_start : khung_frame_end );
 
 
-    f_d = 0.025; % do dai cua moi frame
+    f_d = 0.020; % do dai cua moi frame
     n = f_d * Fs;  % so luong mau trong moi frame
 
     frames = DivFrame(khung_frame, n);
@@ -48,19 +48,12 @@ for i=1:fileFolderLength
 
     for j = 1: size(frames,1)
         temp_frame = frames(j, : );
-        
-        individual_frame_fft_temp = fft(temp_frame, N_FFT);
-            
-            individual_frame_fft_temp = fftshift(individual_frame_fft_temp);
-            individual_frame_fft_temp= abs(individual_frame_fft_temp).^2/length(individual_frame_fft_temp);
-
-        frame_fft = frame_fft + individual_frame_fft_temp; 
+        X1 = abs(fft(temp_frame, N_FFT));
+        frame_fft = frame_fft + X1; 
     end
 
     %vector dac trung 
     frame_fft = frame_fft./size(frames,1);
-    
-    
     
     d_frame_fft_auieo = zeros(1, 5);
     
