@@ -1,7 +1,12 @@
 function [ check_a, check_u, check_i, check_e, check_o ] = SoSanhVectorDacTrung( folderName_THKT, fileName, fileFolderLength, vector_dactrung_a_THHL, vector_dactrung_u_THHL, vector_dactrung_i_THHL, vector_dactrung_e_THHL, vector_dactrung_o_THHL )
-%SOSANHVECTORDACTRUNG Summary of this function goes here
-%   Detailed explanation goes here
-N_FFT = 1024; %512 , 1024, 2048; 
+%SOSANHVECTORDACTRUNG Nhan dang nguyen am, su dung vector dac trung da dc
+%huan luyen
+%   Ta se doc cac file tu folder THKT, tung nguyen am, trich xuat vector
+%   FFT dac trung cua tung file va Tinh khoang cach Euclidean cua vector
+%   dac trung cua tung file so voi 5 vector dac trung da duoc huan luyen
+%   , tu do nhan dang nguyen am bang khoang cach nho nhat
+
+N_FFT = 1024; % Khuong mau do dai vector FFT, thuong co gia tri 512 , 1024, 2048 
 check_a =0;
 check_u =0;
 check_i =0;
@@ -18,43 +23,38 @@ for i=1:fileFolderLength
     [y, Fs] = audioread(audioName); % doc du lieu tu file .wav
     y = y / max(abs(y)); % chuan hoa bien do ve [0;1]
     
+    %Phan tich tieng noi khoang lang
     index_frame = DrawGraph(audioName);
-    
-%     t = [0 : 1 / Fs : length(y) / Fs];
-%     t = t(1 : end - 1);
-
-    
-            
-            
+           
     N_start=index_frame(1);
     N_end=index_frame(length(index_frame));
 
+    %chia khoang tieng noi thanh 3 phan bang nhau va lay phan giua
     khoangchia=(N_end-N_start)/3;
 
-        khung_frame_start = round(Fs * (N_start+khoangchia));
-        khung_frame_end = round(Fs * (N_start+2*khoangchia));
+    khung_frame_start = round(Fs * (N_start+khoangchia));
+    khung_frame_end = round(Fs * (N_start+2*khoangchia));
 
     khung_frame = y( khung_frame_start : khung_frame_end );
-
 
     f_d = 0.020; % do dai cua moi frame
     n = f_d * Fs;  % so luong mau trong moi frame
 
+    %tach khung chia tren thanh cac frame
     frames = DivFrame(khung_frame, n);
-
-
 
     frame_fft = zeros(1, N_FFT); 
 
     for j = 1: size(frames,1)
         temp_frame = frames(j, : );
-        X1 = abs(fft(temp_frame, N_FFT));
+        X1 = abs(fft(temp_frame, N_FFT));%X1 tra ve vector chua cac complex num
         frame_fft = frame_fft + X1; 
     end
 
     %vector dac trung 
     frame_fft = frame_fft./size(frames,1);
     
+    %Tinh khoang cach Euclidean voi 5 vector Huan Luyen
     d_frame_fft_auieo = zeros(1, 5);
     
     d_frame_fft_auieo(1) = Euclidean(frame_fft, vector_dactrung_a_THHL);
@@ -63,15 +63,8 @@ for i=1:fileFolderLength
     d_frame_fft_auieo(4) = Euclidean(frame_fft, vector_dactrung_e_THHL);
     d_frame_fft_auieo(5) = Euclidean(frame_fft, vector_dactrung_o_THHL);
     
+    %xac dinh khoang cach nho nhat
     [~ ,min_d_index] = min(d_frame_fft_auieo);
-%     min_d_index = 0;
-%     min_d = min(d_frame_fft_auieo);
-%     for k = 1: length(d_frame_fft_auieo)
-%         if min_d > d_frame_fft_auieo(k)
-%             min_d = d_frame_fft_auieo(k);
-%             min_d_index = k;
-%         end
-%     end
     
     if min_d_index == 1
         check_a = check_a + 1;
