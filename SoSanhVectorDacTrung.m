@@ -10,7 +10,6 @@ check_o =0;
 
 
 for i=1:fileFolderLength
-
     
     tenthumuc=folderName_THKT((i-1)*5+1:5*i);
     audioName = ['THKT\' tenthumuc '\'  fileName];
@@ -36,12 +35,10 @@ for i=1:fileFolderLength
 
     khung_frame = y( khung_frame_start : khung_frame_end );
 
-
     f_d = 0.020; % do dai cua moi frame
     n = f_d * Fs;  % so luong mau trong moi frame
 
     frames = DivFrame(khung_frame, n);
-
 
 
     frame_fft = zeros(1, N_FFT); 

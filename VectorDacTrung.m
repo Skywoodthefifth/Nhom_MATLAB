@@ -66,8 +66,6 @@ for i=1:fileFolderLength
         
         frames = DivFrame(khung_chia, n);
         
-       
-        
         individual_frame_fft = zeros(1, N_FFT);
         
         for j = 1: size(frames,1)
@@ -84,15 +82,11 @@ for i=1:fileFolderLength
 %         plot(freq, 20*log10(frame_fft(1:N_FFT/2)));
 %         ylabel('FFT Magnitude'); xlabel('Frequency (Hz)'); grid;   
 
-        
-        
-
         sum  = sum + frame_fft;
         
         
         
 end
-
 
 vec_dactrung = sum./fileFolderLength;
 
