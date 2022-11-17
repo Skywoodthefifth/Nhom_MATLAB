@@ -64,4 +64,46 @@ set(u,'Position',[1 1 table_extent(3) table_extent(4)])
 figure_size = get(h,'outerposition');
 desired_fig_size = [figure_size(1) figure_size(2) table_extent(3)+15 table_extent(4)+65+20];
 set(h,'outerposition', desired_fig_size);
+
+%bang thong ke do chinh xac
+check2 = zeros(5,5);
+check2(1,1) = check_a_a*100/21;
+check2(1,2) = check_a_u*100/21;
+check2(1,3) = check_a_i*100/21;
+check2(1,4) = check_a_e*100/21;
+check2(1,5) = check_a_o*100/21;
+
+check2(2,1) = check_u_a*100/21;
+check2(2,2) = check_u_u*100/21;
+check2(2,3) = check_u_i*100/21;
+check2(2,4) = check_u_e*100/21;
+check2(2,5) = check_u_o*100/21;
+
+check2(3,1) = check_i_a*100/21;
+check2(3,2) = check_i_u*100/21;
+check2(3,3) = check_i_i*100/21;
+check2(3,4) = check_i_e*100/21;
+check2(3,5) = check_i_o*100/21;
+
+check2(4,1) = check_e_a*100/21;
+check2(4,2) = check_e_u*100/21;
+check2(4,3) = check_e_i*100/21;
+check2(4,4) = check_e_e*100/21;
+check2(4,5) = check_e_o*100/21;
+
+check2(5,1) = check_o_a*100/21;
+check2(5,2) = check_o_u*100/21;
+check2(5,3) = check_o_i*100/21;
+check2(5,4) = check_o_e*100/21;
+check2(5,5) = check_o_o*100/21;
+
+Tong = (check_a_a+ check_u_u + check_i_i + check_e_e + check_o_o)*100/105;
+dau = '%';
+s = sprintf('Do chinh xac la: %f%s', Tong,dau);
+disp(s);
+T = array2table(check2,...
+    'VariableNames',{'a','u','i','e','o'},...
+     'RowNames',{'a','u','i','e','o'}); 
+T = table(T,'VariableNames',{'Bang thong ke (don vi %)'});
+disp(T) 
 %--->
