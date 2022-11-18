@@ -47,7 +47,7 @@ for i=1:fileFolderLength
 
     for j = 1: size(frames,1)
         temp_frame = frames(j, : );
-        X1 = abs(fft(temp_frame, N_FFT));%X1 tra ve vector chua cac complex num
+        X1 = abs(fft(temp_frame, N_FFT))./length(temp_frame);%X1 tra ve vector chua cac complex num
         frame_fft = frame_fft + X1; 
     end
 

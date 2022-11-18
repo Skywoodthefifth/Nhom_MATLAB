@@ -14,6 +14,14 @@ vector_dactrung_i_THHL = VectorDacTrung(folderName_THHL, 'i.wav', fileFolderLeng
 vector_dactrung_e_THHL = VectorDacTrung(folderName_THHL, 'e.wav', fileFolderLength);
 vector_dactrung_o_THHL = VectorDacTrung(folderName_THHL, 'o.wav', fileFolderLength);
 
+% [audioIn,fs] = audioread("THHL/01MDA/a.wav");
+% [coeffs,delta,deltaDelta,loc] = mfcc(audioIn,fs);
+% vector_dactrung_MFCC_a_THHL = MFCC(folderName_THHL, 'a.wav', fileFolderLength);
+% vector_dactrung_MFCC_u_THHL = MFCC(folderName_THHL, 'u.wav', fileFolderLength);
+% vector_dactrung_MFCC_i_THHL = MFCC(folderName_THHL, 'i.wav', fileFolderLength);
+% vector_dactrung_MFCC_e_THHL = MFCC(folderName_THHL, 'e.wav', fileFolderLength);
+% vector_dactrung_MFCC_o_THHL = MFCC(folderName_THHL, 'o.wav', fileFolderLength);
+
 
 
 [check_a_a, check_a_u, check_a_i, check_a_e, check_a_o] = SoSanhVectorDacTrung( folderName_THKT, 'a.wav', fileFolderLength, vector_dactrung_a_THHL, vector_dactrung_u_THHL, vector_dactrung_i_THHL, vector_dactrung_e_THHL, vector_dactrung_o_THHL);
@@ -55,16 +63,23 @@ check(5,3) = check_o_i;
 check(5,4) = check_o_e;
 check(5,5) = check_o_o;
 
-h = figure;
-data = check;
-u = uitable('Position',[20 20 500 70],'data',data);
-u.RowName = {'a','u','i','e','o'};
-u.ColumnName = {'a','u','i','e','o'};
-table_extent = get(u,'Extent');
-set(u,'Position',[1 1 table_extent(3) table_extent(4)])
-figure_size = get(h,'outerposition');
-desired_fig_size = [figure_size(1) figure_size(2) table_extent(3)+15 table_extent(4)+65+20];
-set(h,'outerposition', desired_fig_size);
+figure;
+xvalues = {'/a/','/e/','/i/','/o/','/u/'};
+yvalues = {'/a/','/e/','/i/','/o/','/u/'};
+h1 = heatmap(xvalues,yvalues,check);
+h1.title("Bang so lan nhan dang");
+h1.Colormap = summer;
+
+% h = figure;
+% data = check;
+% u = uitable('Position',[20 20 500 70],'data',data);
+% u.RowName = {'a','u','i','e','o'};
+% u.ColumnName = {'a','u','i','e','o'};
+% table_extent = get(u,'Extent');
+% set(u,'Position',[1 1 table_extent(3) table_extent(4)])
+% figure_size = get(h,'outerposition');
+% desired_fig_size = [figure_size(1) figure_size(2) table_extent(3)+15 table_extent(4)+65+20];
+% set(h,'outerposition', desired_fig_size);
 
 %bang thong ke do chinh xac
 check2 = zeros(5,5);
@@ -98,13 +113,24 @@ check2(5,3) = check_o_i*100/21;
 check2(5,4) = check_o_e*100/21;
 check2(5,5) = check_o_o*100/21;
 
+figure;
+h2 = heatmap(xvalues,yvalues,check2);
+h2.title("Bang thong ke do chinh xac");
 Tong = (check_a_a+ check_u_u + check_i_i + check_e_e + check_o_o)*100/105;
 dau = '%';
-s = sprintf('Do chinh xac la: %f%s', Tong,dau);
-disp(s);
-T = array2table(check2,...
-    'VariableNames',{'a','u','i','e','o'},...
-     'RowNames',{'a','u','i','e','o'}); 
-T = table(T,'VariableNames',{'Bang thong ke (don vi %)'});
-disp(T) 
-%--->
+str1 = sprintf('Do chinh xac tong la: %f%s', Tong,dau);
+h2.XLabel = str1;
+h2.Colormap = summer;
+
+
+
+%bai1
+% Spectrogram(folderName_THHL,2,'a.wav');
+% Spectrogram(folderName_THHL,2,'e.wav');
+% Spectrogram(folderName_THHL,2,'i.wav');
+% Spectrogram(folderName_THHL,2,'o.wav');
+% Spectrogram(folderName_THHL,2,'u.wav');
+
+
+
+
