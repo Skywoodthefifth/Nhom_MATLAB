@@ -104,6 +104,6 @@ disp(s);
 T = array2table(check2,...
     'VariableNames',{'a','u','i','e','o'},...
      'RowNames',{'a','u','i','e','o'}); 
-T = table(T,'VariableNames',{'Bang thong ke (don vi %)'});
+% T = table(T,'VariableNames',{'Bang thong ke (don vi %)'});
 disp(T) 
 %--->
