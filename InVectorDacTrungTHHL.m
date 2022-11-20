@@ -32,5 +32,5 @@ hold on;
 plot(vector_dactrung_o);
 hold on;
 
-legend({'/a/','/u/', '/i/', '/e/', '/o/'},'Location','north')
+legend({'/a/','/u/', '/i/', '/e/', '/o/'},'Location','north');
 

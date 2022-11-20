@@ -36,7 +36,7 @@ for i=1:fileFolderLength
 
     khung_frame = y( khung_frame_start : khung_frame_end );
 
-    f_d = 0.020; % do dai cua moi frame
+    f_d = 0.025; % do dai cua moi frame
     n = f_d * Fs;  % so luong mau trong moi frame
 
     %tach khung chia tren thanh cac frame
