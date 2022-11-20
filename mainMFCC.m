@@ -14,20 +14,6 @@ vector_dactrung_i_THHL = MFCC(folderName_THHL, 'i.wav', fileFolderLength);
 vector_dactrung_e_THHL = MFCC(folderName_THHL, 'e.wav', fileFolderLength);
 vector_dactrung_o_THHL = MFCC(folderName_THHL, 'o.wav', fileFolderLength);
 
-f = figure('Name', 'Vector dac trung');
-plot(vector_dactrung_a_THHL);
-hold on;
-plot(vector_dactrung_u_THHL);
-hold on;
-plot(vector_dactrung_i_THHL);
-hold on;
-plot(vector_dactrung_e_THHL);
-hold on;
-plot(vector_dactrung_o_THHL);
-hold on;
-
-legend({'/a/','/u/', '/i/', '/e/', '/o/'},'Location','north');
-
 
 [check_a_a, check_a_u, check_a_i, check_a_e, check_a_o] = MFCCsosanh( folderName_THKT, 'a.wav', fileFolderLength, vector_dactrung_a_THHL, vector_dactrung_u_THHL, vector_dactrung_i_THHL, vector_dactrung_e_THHL, vector_dactrung_o_THHL);
 [check_u_a, check_u_u, check_u_i, check_u_e, check_u_o] = MFCCsosanh( folderName_THKT, 'u.wav', fileFolderLength, vector_dactrung_a_THHL, vector_dactrung_u_THHL, vector_dactrung_i_THHL, vector_dactrung_e_THHL, vector_dactrung_o_THHL);
