@@ -29,40 +29,50 @@ N_MFCC = 13;
         khung_chia = y( khung_chia_start : khung_chia_end );
 
         
-        f_d = 0.025; % do dai cua moi frame 
-        n = f_d * Fs;  % so luong mau trong moi frame
-        
-        frames = DivFrame(khung_chia, n);
-        
+%         f_d = 0.025; % do dai cua moi frame 
+%         n = f_d * Fs;  % so luong mau trong moi frame
+%         
+%         frames = DivFrame(khung_chia, n);
+%         
+% 
+% 
+%         temp_frame = frames(1, : );
+%         coeffs = melcepst(temp_frame,Fs, 'M', N_MFCC, floor(3*log(Fs)), 30 , 15, 0, 0.5);%'WindowLength',25,'OverlapLength',12,'numcoeffs',12
+%         
+%         K2 = kmeans(coeffs, 2).';
+%         K3 = kmeans(coeffs, 3).';
+%         K4 = kmeans(coeffs, 4).';
+%         K5 = kmeans(coeffs, 5).';
+%         
+%         
+%         
+% 
+% 
+%         
+%     for j = 2: size(frames,1)
+%         temp_frame = frames(j, : );
+%         coeffs = melcepst(temp_frame,Fs, 'M', N_MFCC, floor(3*log(Fs)), 30 , 15, 0, 0.5);%'WindowLength',25,'OverlapLength',12,'numcoeffs',12
+%         K2 = K2 + kmeans(coeffs, 2).';
+%         K3 = K3 + kmeans(coeffs, 3).';
+%         K4 = K4 + kmeans(coeffs, 4).';
+%         K5 = K5 + kmeans(coeffs, 5).';
+%     end
+%
+%         %vector dac trung 
+%         frame_mfcc_K2 = K2./size(frames,1);
+%         frame_mfcc_K3 = K3./size(frames,1);
+%         frame_mfcc_K4 = K4./size(frames,1);
+%         frame_mfcc_K5 = K5./size(frames,1);
 
+        frame = khung_chia(1:1024);
 
-        temp_frame = frames(1, : );
-        coeffs = melcepst(temp_frame,Fs, 'M', N_MFCC, floor(3*log(Fs)), 30 , 15, 0, 0.5);%'WindowLength',25,'OverlapLength',12,'numcoeffs',12
-        
-        K2 = kmeans(coeffs, 2).';
-        K3 = kmeans(coeffs, 3).';
-        K4 = kmeans(coeffs, 4).';
-        K5 = kmeans(coeffs, 5).';
-        
-        
-        
-
-
-        
-    for j = 2: size(frames,1)
-        temp_frame = frames(j, : );
-        coeffs = melcepst(temp_frame,Fs, 'M', N_MFCC, floor(3*log(Fs)), 30 , 15, 0, 0.5);%'WindowLength',25,'OverlapLength',12,'numcoeffs',12
-        K2 = K2 + kmeans(coeffs, 2).';
-        K3 = K3 + kmeans(coeffs, 3).';
-        K4 = K4 + kmeans(coeffs, 4).';
-        K5 = K5 + kmeans(coeffs, 5).';
-    end
+        coeffs = melcepst(frame,Fs, 'M', N_MFCC, floor(3*log(Fs)), 0.030 * Fs , 0.005 * Fs, 0, 0.5);
         
         %vector dac trung 
-        frame_mfcc_K2 = K2./size(frames,1);
-        frame_mfcc_K3 = K3./size(frames,1);
-        frame_mfcc_K4 = K4./size(frames,1);
-        frame_mfcc_K5 = K5./size(frames,1);
+        frame_mfcc_K2 = kmeans(coeffs, 2).';
+        frame_mfcc_K3 = kmeans(coeffs, 3).';
+        frame_mfcc_K4 = kmeans(coeffs, 4).';
+        frame_mfcc_K5 = kmeans(coeffs, 5).';
         
 
         sum_K2 = frame_mfcc_K2;
@@ -103,35 +113,45 @@ for i=2:fileFolderLength
         khung_chia = y( khung_chia_start : khung_chia_end );
 %          plot(khung_chia);
         
-        f_d = 0.025; % do dai cua moi frame 
-        n = f_d * Fs;  % so luong mau trong moi frame
-        
-        frames = DivFrame(khung_chia, n);
-        
-%       individual_frame_mfcc = zeros(1, N_MFCC);
+%         f_d = 0.025; % do dai cua moi frame 
+%         n = f_d * Fs;  % so luong mau trong moi frame
+%         
+%         frames = DivFrame(khung_chia, n);
+%         
+% %       individual_frame_mfcc = zeros(1, N_MFCC);
+% 
+%         temp_frame = frames(1, : );
+%         coeffs = melcepst(temp_frame,Fs, 'M', N_MFCC, floor(3*log(Fs)), 30 , 15, 0, 0.5);%'WindowLength',25,'OverlapLength',12,'numcoeffs',12
+%         
+%         K2 = kmeans(coeffs, 2).';
+%         K3 = kmeans(coeffs, 3).';
+%         K4 = kmeans(coeffs, 4).';
+%         K5 = kmeans(coeffs, 5).';
+%         
+%     for j = 2: size(frames,1)
+%         temp_frame = frames(j, : );
+%         coeffs = melcepst(temp_frame,Fs, 'M', N_MFCC, floor(3*log(Fs)), 30 , 15, 0, 0.5);%'WindowLength',25,'OverlapLength',12,'numcoeffs',12
+%         K2 = K2 + kmeans(coeffs, 2).';
+%         K3 = K3 + kmeans(coeffs, 3).';
+%         K4 = K4 + kmeans(coeffs, 4).';
+%         K5 = K5 + kmeans(coeffs, 5).';
+%     end
+%         
+%         %vector dac trung 
+%         frame_mfcc_K2 = K2./size(frames,1);
+%         frame_mfcc_K3 = K3./size(frames,1);
+%         frame_mfcc_K4 = K4./size(frames,1);
+%         frame_mfcc_K5 = K5./size(frames,1);
 
-        temp_frame = frames(1, : );
-        coeffs = melcepst(temp_frame,Fs, 'M', N_MFCC, floor(3*log(Fs)), 30 , 15, 0, 0.5);%'WindowLength',25,'OverlapLength',12,'numcoeffs',12
-        
-        K2 = kmeans(coeffs, 2).';
-        K3 = kmeans(coeffs, 3).';
-        K4 = kmeans(coeffs, 4).';
-        K5 = kmeans(coeffs, 5).';
-        
-    for j = 2: size(frames,1)
-        temp_frame = frames(j, : );
-        coeffs = melcepst(temp_frame,Fs, 'M', N_MFCC, floor(3*log(Fs)), 30 , 15, 0, 0.5);%'WindowLength',25,'OverlapLength',12,'numcoeffs',12
-        K2 = K2 + kmeans(coeffs, 2).';
-        K3 = K3 + kmeans(coeffs, 3).';
-        K4 = K4 + kmeans(coeffs, 4).';
-        K5 = K5 + kmeans(coeffs, 5).';
-    end
+        frame = khung_chia(1:1024);
+
+        coeffs = melcepst(frame,Fs, 'M', N_MFCC, floor(3*log(Fs)), 0.030 * Fs , 0.005 * Fs, 0, 0.5);
         
         %vector dac trung 
-        frame_mfcc_K2 = K2./size(frames,1);
-        frame_mfcc_K3 = K3./size(frames,1);
-        frame_mfcc_K4 = K4./size(frames,1);
-        frame_mfcc_K5 = K5./size(frames,1);
+        frame_mfcc_K2 = kmeans(coeffs, 2).';
+        frame_mfcc_K3 = kmeans(coeffs, 3).';
+        frame_mfcc_K4 = kmeans(coeffs, 4).';
+        frame_mfcc_K5 = kmeans(coeffs, 5).';
         
 
         sum_K2 = sum_K2 + frame_mfcc_K2;

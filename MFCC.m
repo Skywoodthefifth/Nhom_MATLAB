@@ -27,7 +27,7 @@ N_MFCC = 13;
     khung_chia_start = round(Fs * (N_start+khoangchia));
     khung_chia_end = round(Fs * (N_start+2*khoangchia));
 
-        khung_chia = y( khung_chia_start : khung_chia_end );
+    khung_chia = y( khung_chia_start : khung_chia_end );
 %          plot(khung_chia);
         
 %         f_d = 0.025; % do dai cua moi frame 

@@ -30,27 +30,33 @@ for i=1:fileFolderLength
 
     khung_frame = y( khung_frame_start : khung_frame_end );
 
-    f_d = 0.025; % do dai cua moi frame
-    n = f_d * Fs;  % so luong mau trong moi frame
+%     f_d = 0.025; % do dai cua moi frame
+%     n = f_d * Fs;  % so luong mau trong moi frame
+% 
+%     %tach khung chia tren thanh cac frame
+%     frames = DivFrame(khung_frame, n);
+% 
+% 
+%     temp_frame = frames(1, : );
+%     coeffs = melcepst(temp_frame,Fs, 'M', N_MFCC, floor(3*log(Fs)), 30 , 15, 0, 0.5);%'WindowLength',25,'OverlapLength',12,'numcoeffs',12
+%         
+%     K = kmeans(coeffs, K_mean_N).';
+%         
+%     for j = 2: size(frames,1)
+%         temp_frame = frames(j, : );
+%         coeffs = melcepst(temp_frame,Fs, 'M', N_MFCC, floor(3*log(Fs)), 30 , 15, 0, 0.5);%'WindowLength',25,'OverlapLength',12,'numcoeffs',12
+%         
+%         K = kmeans(coeffs, K_mean_N).';
+%     end
+%         
+%         %vector dac trung 
+%         frame_mfcc_K = K./size(frames,1);
 
-    %tach khung chia tren thanh cac frame
-    frames = DivFrame(khung_frame, n);
+    frame = khung_frame(1:1024);
 
-
-    temp_frame = frames(1, : );
-    coeffs = melcepst(temp_frame,Fs, 'M', N_MFCC, floor(3*log(Fs)), 30 , 15, 0, 0.5);%'WindowLength',25,'OverlapLength',12,'numcoeffs',12
-        
-    K = kmeans(coeffs, K_mean_N).';
-        
-    for j = 2: size(frames,1)
-        temp_frame = frames(j, : );
-        coeffs = melcepst(temp_frame,Fs, 'M', N_MFCC, floor(3*log(Fs)), 30 , 15, 0, 0.5);%'WindowLength',25,'OverlapLength',12,'numcoeffs',12
-        
-        K = kmeans(coeffs, K_mean_N).';
-    end
-        
-        %vector dac trung 
-        frame_mfcc_K = K./size(frames,1);
+    coeffs = melcepst(frame,Fs, 'M', N_MFCC, floor(3*log(Fs)), 0.030 * Fs , 0.005 * Fs, 0, 0.5);
+    
+    frame_mfcc_K = kmeans(coeffs, K_mean_N).';
     
     %Tinh khoang cach Euclidean voi 5 vector Huan Luyen
     d_frame_mfcc_auieo = zeros(1, 5);

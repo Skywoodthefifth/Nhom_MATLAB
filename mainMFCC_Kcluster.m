@@ -30,11 +30,11 @@ title('Vector dac trung MFCC');
 legend({'/a/','/u/', '/i/', '/e/', '/o/'},'Location','north');
 hold off;
 
-[check_a_a_K5, check_a_u_K5, check_a_i_K5, check_a_e_K5, check_a_o_K5] = MFCCsosanh_Kcluster( folderName_THKT, 'a.wav', fileFolderLength, K2 , vector_K5_a, vector_K5_u, vector_K5_i, vector_K5_e, vector_K5_o);
-[check_u_a_K5, check_u_u_K5, check_u_i_K5, check_u_e_K5, check_u_o_K5] = MFCCsosanh_Kcluster( folderName_THKT, 'u.wav', fileFolderLength, K2 , vector_K5_a, vector_K5_u, vector_K5_i, vector_K5_e, vector_K5_o);
-[check_i_a_K5, check_i_u_K5, check_i_i_K5, check_i_e_K5, check_i_o_K5] = MFCCsosanh_Kcluster( folderName_THKT, 'i.wav', fileFolderLength, K2 , vector_K5_a, vector_K5_u, vector_K5_i, vector_K5_e, vector_K5_o);
-[check_e_a_K5, check_e_u_K5, check_e_i_K5, check_e_e_K5, check_e_o_K5] = MFCCsosanh_Kcluster( folderName_THKT, 'e.wav', fileFolderLength, K2 , vector_K5_a, vector_K5_u, vector_K5_i, vector_K5_e, vector_K5_o);
-[check_o_a_K5, check_o_u_K5, check_o_i_K5, check_o_e_K5, check_o_o_K5] = MFCCsosanh_Kcluster( folderName_THKT, 'o.wav', fileFolderLength, K2 , vector_K5_a, vector_K5_u, vector_K5_i, vector_K5_e, vector_K5_o);
+[check_a_a_K5, check_a_u_K5, check_a_i_K5, check_a_e_K5, check_a_o_K5] = MFCCsosanh_Kcluster( folderName_THKT, 'a.wav', fileFolderLength, K5 , vector_K5_a, vector_K5_u, vector_K5_i, vector_K5_e, vector_K5_o);
+[check_u_a_K5, check_u_u_K5, check_u_i_K5, check_u_e_K5, check_u_o_K5] = MFCCsosanh_Kcluster( folderName_THKT, 'u.wav', fileFolderLength, K5 , vector_K5_a, vector_K5_u, vector_K5_i, vector_K5_e, vector_K5_o);
+[check_i_a_K5, check_i_u_K5, check_i_i_K5, check_i_e_K5, check_i_o_K5] = MFCCsosanh_Kcluster( folderName_THKT, 'i.wav', fileFolderLength, K5 , vector_K5_a, vector_K5_u, vector_K5_i, vector_K5_e, vector_K5_o);
+[check_e_a_K5, check_e_u_K5, check_e_i_K5, check_e_e_K5, check_e_o_K5] = MFCCsosanh_Kcluster( folderName_THKT, 'e.wav', fileFolderLength, K5 , vector_K5_a, vector_K5_u, vector_K5_i, vector_K5_e, vector_K5_o);
+[check_o_a_K5, check_o_u_K5, check_o_i_K5, check_o_e_K5, check_o_o_K5] = MFCCsosanh_Kcluster( folderName_THKT, 'o.wav', fileFolderLength, K5 , vector_K5_a, vector_K5_u, vector_K5_i, vector_K5_e, vector_K5_o);
 
 %<--- khoi tao bang thong ke
 check = zeros(5,5);
