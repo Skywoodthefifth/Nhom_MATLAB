@@ -54,8 +54,8 @@ for i=1:fileFolderLength
 %         frame_mfcc = individual_frame_mfcc./size(frames,1);
 
     coeffs = melcepst(khung_frame,Fs, 'M', N_MFCC, floor(3*log(Fs)), 0.030 * Fs , 0.020 * Fs, 0, 0.5);
-        
-    frame_mfcc = mean(coeffs,1);
+    K_vector = kmeans(coeffs, 2);
+    frame_mfcc = mean(K_vector,1);
     
     %Tinh khoang cach Euclidean voi 5 vector Huan Luyen
     d_frame_mfcc_auieo = zeros(1, 5);

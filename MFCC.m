@@ -1,4 +1,4 @@
-function [ vec_dactrung ] = MFCC( folderName, fileName, fileFolderLength )
+function [ vec_dactrung, K_vector_dactrung ] = MFCC( folderName, fileName, fileFolderLength )
 
 N_MFCC = 13;
 
@@ -53,8 +53,9 @@ N_MFCC = 13;
 %         frame_mfcc = individual_frame_mfcc./size(frames,1);
 
         coeffs = melcepst(khung_chia,Fs, 'M', N_MFCC, floor(3*log(Fs)), 0.030 * Fs , 0.020 * Fs, 0, 0.5);
-        
-        frame_mfcc = mean(coeffs,1);
+        K_vector = kmeans(coeffs, 2);
+        frame_mfcc = mean(K_vector,1);
+%         frame_mfcc = mean(coeffs,1);
 
         sum = frame_mfcc;
 
@@ -114,8 +115,9 @@ for i=2:fileFolderLength
 
         coeffs = melcepst(khung_chia,Fs, 'M', N_MFCC, floor(3*log(Fs)), 0.030 * Fs , 0.020 * Fs, 0, 0.5);
         
-        frame_mfcc = mean(coeffs,1);
-
+        K_vector = kmeans(coeffs, 2);
+%         frame_mfcc = mean(coeffs,1);
+        frame_mfcc = mean(K_vector,1);
         sum = sum + frame_mfcc;
 end
 
