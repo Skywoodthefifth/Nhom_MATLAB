@@ -31,27 +31,31 @@ for i=1:fileFolderLength
 
     khung_frame = y( khung_frame_start : khung_frame_end );
 
-    f_d = 0.025; % do dai cua moi frame
-    n = f_d * Fs;  % so luong mau trong moi frame
+%     f_d = 0.025; % do dai cua moi frame
+%     n = f_d * Fs;  % so luong mau trong moi frame
+% 
+%     %tach khung chia tren thanh cac frame
+%     frames = DivFrame(khung_frame, n);
+% 
+% 
+%     temp_frame = frames(1, : );
+%         coeffs = melcepst(temp_frame,Fs, 'M', N_MFCC, floor(3*log(Fs)), n , round(n/2), 0, 0.5);%'WindowLength',25,'OverlapLength',12,'numcoeffs',12
+%         X1 = mean(coeffs,1);
+%         individual_frame_mfcc = X1;
+%         
+%     for j = 2: size(frames,1)
+%         temp_frame = frames(j, : );
+%         coeffs = melcepst(temp_frame,Fs, 'M', N_MFCC, floor(3*log(Fs)), n , round(n/2), 0, 0.5);%'WindowLength',25,'OverlapLength',12,'numcoeffs',12
+%         X1 = mean(coeffs,1);
+%         individual_frame_mfcc = individual_frame_mfcc + X1;
+%     end
+%         
+%         %vector dac trung 
+%         frame_mfcc = individual_frame_mfcc./size(frames,1);
 
-    %tach khung chia tren thanh cac frame
-    frames = DivFrame(khung_frame, n);
-
-
-    temp_frame = frames(1, : );
-        coeffs = melcepst(temp_frame,Fs, 'M', N_MFCC, floor(3*log(Fs)), n , round(n/2), 0, 0.5);%'WindowLength',25,'OverlapLength',12,'numcoeffs',12
-        X1 = mean(coeffs,1);
-        individual_frame_mfcc = X1;
+    coeffs = melcepst(khung_frame,Fs, 'M', N_MFCC, floor(3*log(Fs)), 0.030 * Fs , 0.020 * Fs, 0, 0.5);
         
-    for j = 2: size(frames,1)
-        temp_frame = frames(j, : );
-        coeffs = melcepst(temp_frame,Fs, 'M', N_MFCC, floor(3*log(Fs)), n , round(n/2), 0, 0.5);%'WindowLength',25,'OverlapLength',12,'numcoeffs',12
-        X1 = mean(coeffs,1);
-        individual_frame_mfcc = individual_frame_mfcc + X1;
-    end
-        
-        %vector dac trung 
-        frame_mfcc = individual_frame_mfcc./size(frames,1);
+    frame_mfcc = mean(coeffs,1);
     
     %Tinh khoang cach Euclidean voi 5 vector Huan Luyen
     d_frame_mfcc_auieo = zeros(1, 5);
