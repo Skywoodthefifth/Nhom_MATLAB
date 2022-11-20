@@ -21,53 +21,53 @@ K5 = 5;
 
 f2 = figure('Name', 'Vector dac trung MFCC');
 hold on;
-plot(vector_K5_a);
-plot(vector_K5_u);
-plot(vector_K5_i);
-plot(vector_K5_e);
-plot(vector_K5_o);
+plot(vector_K2_a);
+plot(vector_K2_u);
+plot(vector_K2_i);
+plot(vector_K2_e);
+plot(vector_K2_o);
 title('Vector dac trung MFCC');
 legend({'/a/','/u/', '/i/', '/e/', '/o/'},'Location','north');
 hold off;
 
-[check_a_a_K5, check_a_u_K5, check_a_i_K5, check_a_e_K5, check_a_o_K5] = MFCCsosanh_Kcluster( folderName_THKT, 'a.wav', fileFolderLength, K5 , vector_K5_a, vector_K5_u, vector_K5_i, vector_K5_e, vector_K5_o);
-[check_u_a_K5, check_u_u_K5, check_u_i_K5, check_u_e_K5, check_u_o_K5] = MFCCsosanh_Kcluster( folderName_THKT, 'u.wav', fileFolderLength, K5 , vector_K5_a, vector_K5_u, vector_K5_i, vector_K5_e, vector_K5_o);
-[check_i_a_K5, check_i_u_K5, check_i_i_K5, check_i_e_K5, check_i_o_K5] = MFCCsosanh_Kcluster( folderName_THKT, 'i.wav', fileFolderLength, K5 , vector_K5_a, vector_K5_u, vector_K5_i, vector_K5_e, vector_K5_o);
-[check_e_a_K5, check_e_u_K5, check_e_i_K5, check_e_e_K5, check_e_o_K5] = MFCCsosanh_Kcluster( folderName_THKT, 'e.wav', fileFolderLength, K5 , vector_K5_a, vector_K5_u, vector_K5_i, vector_K5_e, vector_K5_o);
-[check_o_a_K5, check_o_u_K5, check_o_i_K5, check_o_e_K5, check_o_o_K5] = MFCCsosanh_Kcluster( folderName_THKT, 'o.wav', fileFolderLength, K5 , vector_K5_a, vector_K5_u, vector_K5_i, vector_K5_e, vector_K5_o);
+[check_a_a_K2, check_a_u_K2, check_a_i_K2, check_a_e_K2, check_a_o_K2] = MFCCsosanh_Kcluster( folderName_THKT, 'a.wav', fileFolderLength, K2 , vector_K2_a, vector_K2_u, vector_K2_i, vector_K2_e, vector_K2_o);
+[check_u_a_K2, check_u_u_K2, check_u_i_K2, check_u_e_K2, check_u_o_K2] = MFCCsosanh_Kcluster( folderName_THKT, 'u.wav', fileFolderLength, K2 , vector_K2_a, vector_K2_u, vector_K2_i, vector_K2_e, vector_K2_o);
+[check_i_a_K2, check_i_u_K2, check_i_i_K2, check_i_e_K2, check_i_o_K2] = MFCCsosanh_Kcluster( folderName_THKT, 'i.wav', fileFolderLength, K2 , vector_K2_a, vector_K2_u, vector_K2_i, vector_K2_e, vector_K2_o);
+[check_e_a_K2, check_e_u_K2, check_e_i_K2, check_e_e_K2, check_e_o_K2] = MFCCsosanh_Kcluster( folderName_THKT, 'e.wav', fileFolderLength, K2 , vector_K2_a, vector_K2_u, vector_K2_i, vector_K2_e, vector_K2_o);
+[check_o_a_K2, check_o_u_K2, check_o_i_K2, check_o_e_K2, check_o_o_K2] = MFCCsosanh_Kcluster( folderName_THKT, 'o.wav', fileFolderLength, K2 , vector_K2_a, vector_K2_u, vector_K2_i, vector_K2_e, vector_K2_o);
 
 %<--- khoi tao bang thong ke
 check = zeros(5,5);
 
-check(1,1) = check_a_a_K5;
-check(1,2) = check_a_u_K5;
-check(1,3) = check_a_i_K5;
-check(1,4) = check_a_e_K5;
-check(1,5) = check_a_o_K5;
+check(1,1) = check_a_a_K2;
+check(1,2) = check_a_u_K2;
+check(1,3) = check_a_i_K2;
+check(1,4) = check_a_e_K2;
+check(1,5) = check_a_o_K2;
 
-check(2,1) = check_u_a_K5;
-check(2,2) = check_u_u_K5;
-check(2,3) = check_u_i_K5;
-check(2,4) = check_u_e_K5;
-check(2,5) = check_u_o_K5;
+check(2,1) = check_u_a_K2;
+check(2,2) = check_u_u_K2;
+check(2,3) = check_u_i_K2;
+check(2,4) = check_u_e_K2;
+check(2,5) = check_u_o_K2;
 
-check(3,1) = check_i_a_K5;
-check(3,2) = check_i_u_K5;
-check(3,3) = check_i_i_K5;
-check(3,4) = check_i_e_K5;
-check(3,5) = check_i_o_K5;
+check(3,1) = check_i_a_K2;
+check(3,2) = check_i_u_K2;
+check(3,3) = check_i_i_K2;
+check(3,4) = check_i_e_K2;
+check(3,5) = check_i_o_K2;
 
-check(4,1) = check_e_a_K5;
-check(4,2) = check_e_u_K5;
-check(4,3) = check_e_i_K5;
-check(4,4) = check_e_e_K5;
-check(4,5) = check_e_o_K5;
+check(4,1) = check_e_a_K2;
+check(4,2) = check_e_u_K2;
+check(4,3) = check_e_i_K2;
+check(4,4) = check_e_e_K2;
+check(4,5) = check_e_o_K2;
 
-check(5,1) = check_o_a_K5;
-check(5,2) = check_o_u_K5;
-check(5,3) = check_o_i_K5;
-check(5,4) = check_o_e_K5;
-check(5,5) = check_o_o_K5;
+check(5,1) = check_o_a_K2;
+check(5,2) = check_o_u_K2;
+check(5,3) = check_o_i_K2;
+check(5,4) = check_o_e_K2;
+check(5,5) = check_o_o_K2;
 
 h = figure;
 data = check;
