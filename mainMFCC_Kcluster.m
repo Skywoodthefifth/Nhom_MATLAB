@@ -106,6 +106,7 @@ check(5,4) = check_o_e_K;
 check(5,5) = check_o_o_K;
 
 h = figure;
+title('Bang thong ke do chinh xac');
 data = check;
 u = uitable('Position',[20 20 500 70],'data',data);
 u.RowName = {'a','u','i','e','o'};
@@ -115,7 +116,6 @@ set(u,'Position',[1 1 table_extent(3) table_extent(4)])
 figure_size = get(h,'outerposition');
 desired_fig_size = [figure_size(1) figure_size(2) table_extent(3)+15 table_extent(4)+65+20];
 set(h,'outerposition', desired_fig_size);
-title('Bang thong ke do chinh xac');
 
 
 
@@ -154,6 +154,7 @@ check2(5,4) = check_o_e_K*100/21;
 check2(5,5) = check_o_o_K*100/21;
 
 h = figure;
+title('Bang thong ke do chinh xac (%)');
 data = check2;
 u = uitable('Position',[20 20 500 70],'data',data);
 u.RowName = {'a','u','i','e','o'};
@@ -163,5 +164,3 @@ set(u,'Position',[1 1 table_extent(3) table_extent(4)])
 figure_size = get(h,'outerposition');
 desired_fig_size = [figure_size(1) figure_size(2) table_extent(3)+15 table_extent(4)+65+20];
 set(h,'outerposition', desired_fig_size);
-
-title('Bang thong ke do chinh xac (%)');
