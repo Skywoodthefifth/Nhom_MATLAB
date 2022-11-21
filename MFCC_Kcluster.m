@@ -69,10 +69,15 @@ N_MFCC = 13;
         coeffs = melcepst(frame,Fs, 'M', N_MFCC, floor(3*log(Fs)), 0.005 * Fs , 0.003 * Fs, 0, 0.5);
         
         %vector dac trung 
-        frame_mfcc_K2 = kmeans(coeffs, 2).';
-        frame_mfcc_K3 = kmeans(coeffs, 3).';
-        frame_mfcc_K4 = kmeans(coeffs, 4).';
-        frame_mfcc_K5 = kmeans(coeffs, 5).';
+        [~, frame_mfcc_K2] = kmeans(coeffs, 2);
+        [~, frame_mfcc_K3] = kmeans(coeffs, 3);
+        [~, frame_mfcc_K4] = kmeans(coeffs, 4);
+        [~, frame_mfcc_K5] = kmeans(coeffs, 5);
+        
+        frame_mfcc_K2 = mean(frame_mfcc_K2,1);
+        frame_mfcc_K3 = mean(frame_mfcc_K3,1);
+        frame_mfcc_K4 = mean(frame_mfcc_K4,1);
+        frame_mfcc_K5 = mean(frame_mfcc_K5,1);
         
 
         sum_K2 = frame_mfcc_K2;
@@ -148,10 +153,20 @@ for i=2:fileFolderLength
         coeffs = melcepst(frame,Fs, 'M', N_MFCC, floor(3*log(Fs)), 0.005 * Fs , 0.003 * Fs, 0, 0.5);
         
         %vector dac trung 
-        frame_mfcc_K2 = kmeans(coeffs, 2).';
-        frame_mfcc_K3 = kmeans(coeffs, 3).';
-        frame_mfcc_K4 = kmeans(coeffs, 4).';
-        frame_mfcc_K5 = kmeans(coeffs, 5).';
+%         frame_mfcc_K2 = kmeans(coeffs, 2).';
+%         frame_mfcc_K3 = kmeans(coeffs, 3).';
+%         frame_mfcc_K4 = kmeans(coeffs, 4).';
+%         frame_mfcc_K5 = kmeans(coeffs, 5).';
+
+        [~, frame_mfcc_K2] = kmeans(coeffs, 2);
+        [~, frame_mfcc_K3] = kmeans(coeffs, 3);
+        [~, frame_mfcc_K4] = kmeans(coeffs, 4);
+        [~, frame_mfcc_K5] = kmeans(coeffs, 5);
+        
+        frame_mfcc_K2 = mean(frame_mfcc_K2,1);
+        frame_mfcc_K3 = mean(frame_mfcc_K3,1);
+        frame_mfcc_K4 = mean(frame_mfcc_K4,1);
+        frame_mfcc_K5 = mean(frame_mfcc_K5,1);
         
 
         sum_K2 = sum_K2 + frame_mfcc_K2;
