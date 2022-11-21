@@ -66,7 +66,7 @@ N_MFCC = 13;
 
         frame = khung_chia(1:1024);
 
-        coeffs = melcepst(frame,Fs, 'M', N_MFCC, floor(3*log(Fs)), 0.005 * Fs , 0.003 * Fs, 0, 0.5);
+        coeffs = melcepst(frame,Fs, 'M', N_MFCC, floor(3*log(Fs)), 0.030 * Fs , 0.005 * Fs, 0, 0.5);
         
         %vector dac trung 
         [~, frame_mfcc_K2] = kmeans(coeffs, 2);
@@ -150,7 +150,7 @@ for i=2:fileFolderLength
 
         frame = khung_chia(1:1024);
 
-        coeffs = melcepst(frame,Fs, 'M', N_MFCC, floor(3*log(Fs)), 0.005 * Fs , 0.003 * Fs, 0, 0.5);
+        coeffs = melcepst(frame,Fs, 'M', N_MFCC, floor(3*log(Fs)), 0.030 * Fs , 0.005 * Fs, 0, 0.5);
         
         %vector dac trung 
 %         frame_mfcc_K2 = kmeans(coeffs, 2).';

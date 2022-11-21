@@ -154,7 +154,8 @@ check2(5,4) = check_o_e_K*100/21;
 check2(5,5) = check_o_o_K*100/21;
 
 h = figure;
-title('Bang thong ke do chinh xac (%)');
+Tong = (check_a_a_K+ check_u_u_K + check_i_i_K + check_e_e_K + check_o_o_K)*100/105;
+title(sprintf('Do chinh xac tong la: %f %%', Tong));
 data = check2;
 u = uitable('Position',[20 20 500 70],'data',data);
 u.RowName = {'a','u','i','e','o'};
