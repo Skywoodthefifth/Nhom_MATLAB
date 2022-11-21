@@ -115,3 +115,53 @@ set(u,'Position',[1 1 table_extent(3) table_extent(4)])
 figure_size = get(h,'outerposition');
 desired_fig_size = [figure_size(1) figure_size(2) table_extent(3)+15 table_extent(4)+65+20];
 set(h,'outerposition', desired_fig_size);
+title('Bang thong ke do chinh xac');
+
+
+
+
+
+%bang thong ke do chinh xac
+check2 = zeros(5,5);
+check2(1,1) = check_a_a_K*100/21;
+check2(1,2) = check_a_u_K*100/21;
+check2(1,3) = check_a_i_K*100/21;
+check2(1,4) = check_a_e_K*100/21;
+check2(1,5) = check_a_o_K*100/21;
+
+check2(2,1) = check_u_a_K*100/21;
+check2(2,2) = check_u_u_K*100/21;
+check2(2,3) = check_u_i_K*100/21;
+check2(2,4) = check_u_e_K*100/21;
+check2(2,5) = check_u_o_K*100/21;
+
+check2(3,1) = check_i_a_K*100/21;
+check2(3,2) = check_i_u_K*100/21;
+check2(3,3) = check_i_i_K*100/21;
+check2(3,4) = check_i_e_K*100/21;
+check2(3,5) = check_i_o_K*100/21;
+
+check2(4,1) = check_e_a_K*100/21;
+check2(4,2) = check_e_u_K*100/21;
+check2(4,3) = check_e_i_K*100/21;
+check2(4,4) = check_e_e_K*100/21;
+check2(4,5) = check_e_o_K*100/21;
+
+check2(5,1) = check_o_a_K*100/21;
+check2(5,2) = check_o_u_K*100/21;
+check2(5,3) = check_o_i_K*100/21;
+check2(5,4) = check_o_e_K*100/21;
+check2(5,5) = check_o_o_K*100/21;
+
+h = figure;
+data = check2;
+u = uitable('Position',[20 20 500 70],'data',data);
+u.RowName = {'a','u','i','e','o'};
+u.ColumnName = {'a','u','i','e','o'};
+table_extent = get(u,'Extent');
+set(u,'Position',[1 1 table_extent(3) table_extent(4)])
+figure_size = get(h,'outerposition');
+desired_fig_size = [figure_size(1) figure_size(2) table_extent(3)+15 table_extent(4)+65+20];
+set(h,'outerposition', desired_fig_size);
+
+title('Bang thong ke do chinh xac (%)');
