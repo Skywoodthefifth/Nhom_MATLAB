@@ -1,4 +1,4 @@
-function [ check_a, check_u, check_i, check_e, check_o ] = MFCCsosanh_Kcluster( folderName_THKT, fileName, fileFolderLength, K_mean_N ,  vector_dactrung_a_THHL, vector_dactrung_u_THHL, vector_dactrung_i_THHL, vector_dactrung_e_THHL, vector_dactrung_o_THHL )
+function [ check_a, check_u, check_i, check_e, check_o ] = MFCCsosanh_Kcluster( folderName_THKT, fileName, fileFolderLength ,  vector_dactrung_a_THHL_2, vector_dactrung_u_THHL_2, vector_dactrung_i_THHL_2, vector_dactrung_e_THHL_2, vector_dactrung_o_THHL_2 ,  vector_dactrung_a_THHL_3, vector_dactrung_u_THHL_3, vector_dactrung_i_THHL_3, vector_dactrung_e_THHL_3, vector_dactrung_o_THHL_3 ,  vector_dactrung_a_THHL_4, vector_dactrung_u_THHL_4, vector_dactrung_i_THHL_4, vector_dactrung_e_THHL_4, vector_dactrung_o_THHL_4 ,  vector_dactrung_a_THHL_5, vector_dactrung_u_THHL_5, vector_dactrung_i_THHL_5, vector_dactrung_e_THHL_5, vector_dactrung_o_THHL_5  )
 N_MFCC = 13;
 
 check_a =0;
@@ -58,46 +58,43 @@ for i=1:fileFolderLength
 
     coeffs = melcepst(frame,Fs, 'M', N_MFCC, floor(3*log(Fs)), 0.030 * Fs , 0.005 * Fs, 0, 0.5);
     
-    frame_mfcc_K = kmeans(coeffs, K_mean_N).';
+    frame_mfcc_K2 = kmeans(coeffs, 2).';
+    frame_mfcc_K3 = kmeans(coeffs, 3).';
+    frame_mfcc_K4 = kmeans(coeffs, 4).';
+    frame_mfcc_K5 = kmeans(coeffs, 5).';
     
     %Tinh khoang cach Euclidean voi 5 vector Huan Luyen
     d_frame_mfcc_auieo = zeros(1, 5);
-    sum_dis_2 = 0;
-    d_frame_mfcc_auieo(1) = Euclidean(frame_mfcc_K, vector_dactrung_a_THHL_2);
-    d_frame_mfcc_auieo(2) = Euclidean(frame_mfcc_K, vector_dactrung_u_THHL_2);
-    d_frame_mfcc_auieo(3) = Euclidean(frame_mfcc_K, vector_dactrung_i_THHL_2);
-    d_frame_mfcc_auieo(4) = Euclidean(frame_mfcc_K, vector_dactrung_e_THHL_2);
-    d_frame_mfcc_auieo(5) = Euclidean(frame_mfcc_K, vector_dactrung_o_THHL_2);
     
-    sum_dis_2 +=  d_frame_mfcc_auieo(1) + 
+    d_frame_mfcc_auieo(1) = Euclidean(frame_mfcc_K2, vector_dactrung_a_THHL_2);
+    d_frame_mfcc_auieo(2) = Euclidean(frame_mfcc_K2, vector_dactrung_u_THHL_2);
+    d_frame_mfcc_auieo(3) = Euclidean(frame_mfcc_K2, vector_dactrung_i_THHL_2);
+    d_frame_mfcc_auieo(4) = Euclidean(frame_mfcc_K2, vector_dactrung_e_THHL_2);
+    d_frame_mfcc_auieo(5) = Euclidean(frame_mfcc_K2, vector_dactrung_o_THHL_2);
     
-     d_frame_mfcc_auieo(6) = Euclidean(frame_mfcc_K, vector_dactrung_a_THHL_3);
-    d_frame_mfcc_auieo(7) = Euclidean(frame_mfcc_K, vector_dactrung_u_THHL_3);
-    d_frame_mfcc_auieo(8) = Euclidean(frame_mfcc_K, vector_dactrung_i_THHL_3);
-    d_frame_mfcc_auieo(9) = Euclidean(frame_mfcc_K, vector_dactrung_e_THHL_3);
-    d_frame_mfcc_auieo(10) = Euclidean(frame_mfcc_K, vector_dactrung_o_THHL_3);
+    d_frame_mfcc_auieo(1) = d_frame_mfcc_auieo(1) + Euclidean(frame_mfcc_K3, vector_dactrung_a_THHL_3);
+    d_frame_mfcc_auieo(2) = d_frame_mfcc_auieo(2) + Euclidean(frame_mfcc_K3, vector_dactrung_u_THHL_3);
+    d_frame_mfcc_auieo(3) = d_frame_mfcc_auieo(3) + Euclidean(frame_mfcc_K3, vector_dactrung_i_THHL_3);
+    d_frame_mfcc_auieo(4) = d_frame_mfcc_auieo(4) + Euclidean(frame_mfcc_K3, vector_dactrung_e_THHL_3);
+    d_frame_mfcc_auieo(5) = d_frame_mfcc_auieo(5) + Euclidean(frame_mfcc_K3, vector_dactrung_o_THHL_3);
     
-     d_frame_mfcc_auieo(11) = Euclidean(frame_mfcc_K, vector_dactrung_a_THHL_4);
-    d_frame_mfcc_auieo(12) = Euclidean(frame_mfcc_K, vector_dactrung_u_THHL_4);
-    d_frame_mfcc_auieo(13) = Euclidean(frame_mfcc_K, vector_dactrung_i_THHL_4);
-    d_frame_mfcc_auieo(14) = Euclidean(frame_mfcc_K, vector_dactrung_e_THHL_4);
-    d_frame_mfcc_auieo(15) = Euclidean(frame_mfcc_K, vector_dactrung_o_THHL_4);
+    d_frame_mfcc_auieo(1) = d_frame_mfcc_auieo(1) +  Euclidean(frame_mfcc_K4, vector_dactrung_a_THHL_4);
+    d_frame_mfcc_auieo(2) = d_frame_mfcc_auieo(2) +  Euclidean(frame_mfcc_K4, vector_dactrung_u_THHL_4);
+    d_frame_mfcc_auieo(3) = d_frame_mfcc_auieo(3) +  Euclidean(frame_mfcc_K4, vector_dactrung_i_THHL_4);
+    d_frame_mfcc_auieo(4) = d_frame_mfcc_auieo(4) +  Euclidean(frame_mfcc_K4, vector_dactrung_e_THHL_4);
+    d_frame_mfcc_auieo(5) = d_frame_mfcc_auieo(5) +  Euclidean(frame_mfcc_K4, vector_dactrung_o_THHL_4);
     
-     d_frame_mfcc_auieo(16) = Euclidean(frame_mfcc_K, vector_dactrung_a_THHL_5);
-    d_frame_mfcc_auieo(17) = Euclidean(frame_mfcc_K, vector_dactrung_u_THHL_5);
-    d_frame_mfcc_auieo(18) = Euclidean(frame_mfcc_K, vector_dactrung_i_THHL_5);
-    d_frame_mfcc_auieo(19) = Euclidean(frame_mfcc_K, vector_dactrung_e_THHL_5);
-    d_frame_mfcc_auieo(20) = Euclidean(frame_mfcc_K, vector_dactrung_o_THHL_5);
-    
-    
-    
-    sum_dis_3 = 0;
-    sum_dis_4 = 0;
-    sum_dis_5 = 0;
-    for i=1:5:20
-        sum_dis_2 = sum_dis_2 + 
-    end
-    
+    d_frame_mfcc_auieo(1) = d_frame_mfcc_auieo(1) + Euclidean(frame_mfcc_K5, vector_dactrung_a_THHL_5);
+    d_frame_mfcc_auieo(2) = d_frame_mfcc_auieo(2) + Euclidean(frame_mfcc_K5, vector_dactrung_u_THHL_5);
+    d_frame_mfcc_auieo(3) = d_frame_mfcc_auieo(3) + Euclidean(frame_mfcc_K5, vector_dactrung_i_THHL_5);
+    d_frame_mfcc_auieo(4) = d_frame_mfcc_auieo(4) + Euclidean(frame_mfcc_K5, vector_dactrung_e_THHL_5);
+    d_frame_mfcc_auieo(5) = d_frame_mfcc_auieo(5) + Euclidean(frame_mfcc_K5, vector_dactrung_o_THHL_5);
+   
+    d_frame_mfcc_auieo(1) = d_frame_mfcc_auieo(1)/4;
+    d_frame_mfcc_auieo(2) = d_frame_mfcc_auieo(2)/4;
+    d_frame_mfcc_auieo(3) = d_frame_mfcc_auieo(3)/4;
+    d_frame_mfcc_auieo(4) = d_frame_mfcc_auieo(4)/4;
+    d_frame_mfcc_auieo(5) = d_frame_mfcc_auieo(5)/4;
     
     %xac dinh khoang cach nho nhat
     [~ ,min_d_index] = min(d_frame_mfcc_auieo);
