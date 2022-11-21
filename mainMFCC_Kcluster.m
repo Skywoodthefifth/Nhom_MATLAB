@@ -36,6 +36,9 @@ hold off;
 [check_e_a_K2, check_e_u_K2, check_e_i_K2, check_e_e_K2, check_e_o_K2] = MFCCsosanh_Kcluster( folderName_THKT, 'e.wav', fileFolderLength, K2 , vector_K2_a, vector_K2_u, vector_K2_i, vector_K2_e, vector_K2_o);
 [check_o_a_K2, check_o_u_K2, check_o_i_K2, check_o_e_K2, check_o_o_K2] = MFCCsosanh_Kcluster( folderName_THKT, 'o.wav', fileFolderLength, K2 , vector_K2_a, vector_K2_u, vector_K2_i, vector_K2_e, vector_K2_o);
 
+
+
+
 %<--- khoi tao bang thong ke
 check = zeros(5,5);
 
